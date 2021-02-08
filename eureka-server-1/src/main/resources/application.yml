@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+
+spring:
+  application:
+    name: server-self
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000 #单位毫秒
+        readTimeout: 5000 #单位毫秒
+        OkToRetryOnAllOperations: true
+        MaxAutoRetries: 1
+        MaxAutoRetriesNextServer: 3
+
+
+
+
+
+
