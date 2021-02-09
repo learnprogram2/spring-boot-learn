@@ -20,7 +20,28 @@ feign:
         OkToRetryOnAllOperations: true
         MaxAutoRetries: 1
         MaxAutoRetriesNextServer: 3
+  # feign启用 hystrix
+  hystrix:
+    enabled: true
 
+# hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+      circuitBreaker:
+        requestVolumeThreshold: 4
+    # 为serviceB单独配置hystrix配置.
+    serviceB:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+      circuitBreaker:
+        requestVolumeThreshold: 5
 
 
 

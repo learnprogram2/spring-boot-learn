@@ -16,9 +16,13 @@ public class DemoController implements IEurekaClient {
 
     @Override
     @GetMapping("/{name}")
-    public String getName(@PathVariable("name") String name) {
+    public String getName(@PathVariable("name") String name)  {
         logger.info("get on request: name is [{}]", name);
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "hello " + name + ", you get from client1";
     }
 

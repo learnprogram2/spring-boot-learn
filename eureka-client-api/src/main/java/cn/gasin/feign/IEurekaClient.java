@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/demo")
 public interface IEurekaClient {
     @GetMapping("/{name}")
-    public String getName(@PathVariable("name") String name);
+    public String getName(@PathVariable("name") String name) ;
 
 }
