@@ -3,7 +3,7 @@ server:
 
 eureka:
   client:
-    register-with-eureka: false
+    register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8080/eureka
 
@@ -45,6 +45,14 @@ hystrix:
   # dashboard要开启这个允许的地址
   dashboard:
     proxyStreamAllowList: "localhost"
+
+turbine:
+  appConfig: server-self  #turbine监控的服务，可以有多个: 注意, 这里监控的是注册在eureka 且 暴露出metrix的hystrix-service, 而不是真正的eureka作为consumer的服务.
+                          # 所以, 每一个hystrix增强的生产者, 除了要暴露metrics之外, 还要把自己注册到eureka上面.
+  clusterNameExpression: "'default'"
+  instanceUrlSuffix:
+    default: /actuator/hystrix.stream
+
 
 
 
