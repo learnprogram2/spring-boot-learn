@@ -42,8 +42,9 @@ hystrix:
             timeoutInMilliseconds: 1000
       circuitBreaker:
         requestVolumeThreshold: 5
-
-
+  # dashboard要开启这个允许的地址
+  dashboard:
+    proxyStreamAllowList: "localhost"
 
 
 

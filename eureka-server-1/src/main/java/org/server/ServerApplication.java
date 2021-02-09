@@ -9,6 +9,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication(proxyBeanMethods = false)
 @EnableFeignClients
 @EnableHystrix // 实际上就是 @EnableCircuitBreaker
+@EnableHystrixDashboard
 public class ServerApplication {
 
 
@@ -54,7 +56,7 @@ public class ServerApplication {
     @Bean
     public ServletRegistrationBean hystrixMetricsStreamServlet() {
         ServletRegistrationBean registration = new ServletRegistrationBean(new HystrixMetricsStreamServlet());
-        registration.addUrlMappings("/hystrix.stream");
+        registration.addUrlMappings("/actuator/hystrix.stream");
         return registration;
     }
 
