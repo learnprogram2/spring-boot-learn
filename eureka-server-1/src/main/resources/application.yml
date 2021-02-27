@@ -31,7 +31,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 1000
+            timeoutInMilliseconds: 10000000
       circuitBreaker:
         requestVolumeThreshold: 4
     # 为serviceB单独配置hystrix配置.
