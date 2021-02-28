@@ -1,0 +1,28 @@
+server:
+  port: 8090
+
+zuul:
+  servlet-path: /
+  routes:
+    # 请求server-self的时候会转发到"http://localhost:8080"地址, 这就是我们eureka-server的地址.
+    # 请求"http://localhost:8090/server-self/xxx" ==> "http://localhost:8080/xxx"
+    # 请求格式"zuul地址/{服务名字}/服务内的url"
+    # 最后创建出route map里面的一个键值对: <"/server-self/**", ZuulRoute>;
+    server-self:
+      url: http://localhost:8080
+    ribbon-consumer:
+      serviceId: ribbon-consumer
+  forceOriginalQueryStringEncoding: true
+
+eureka:
+  client:
+#    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+
+
+spring:
+  application:
+    name: zuulServer
+
+
